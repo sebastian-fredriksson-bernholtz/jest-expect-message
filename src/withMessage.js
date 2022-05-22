@@ -24,9 +24,9 @@ const wrapMatcher = (matcher, customMessage) => {
       }
 
       const matcherMessage =
-        typeof error.matcherResult.message === 'function' ? error.matcherResult.message() : error.matcherResult.message;
+        typeof matcherResult.message === 'function' ? matcherResult.message() : matcherResult.message;
 
-      const message = () => 'Custom message:\n  ' + customMessage + '\n\n' + matcherMessage;
+      const message = () => '\x1b[31m' + customMessage + '\x1b[0m' + '\n\n' + matcherMessage;
 
       throw new JestAssertionError({ ...matcherResult, message }, newMatcher);
     }
